@@ -7,6 +7,7 @@ import { RoomsModule } from './rooms/rooms.module';
 import { MessagesModule } from './messages/messages.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
 @Module({
   imports: [
@@ -16,7 +17,17 @@ import * as Joi from 'joi';
         PORT: Joi.number().port().required(),
       })
     }),
-    // CommonModule,
+    TypeOrmModule.forRoot({
+      type: 'postgres',
+      host: process.env.DB_HOST,
+      port: +process.env.DB_PORT,
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASS,
+      database: process.env.DB_NAME,
+      entities: [],
+      synchronize: true,
+    }),
+    CommonModule,
     UsersModule,
     RoomsModule,
     MessagesModule
