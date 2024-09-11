@@ -8,6 +8,9 @@ import { MessagesModule } from './messages/messages.module';
 import { ConfigModule } from '@nestjs/config';
 import * as Joi from 'joi';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from './users/entities/user.entity';
+import { Room } from './rooms/entities/room.entity';
+import { Message } from './messages/entities/message.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASS,
       database: process.env.DB_NAME,
-      entities: [],
+      entities: [User, Room, Message],
       synchronize: true,
     }),
     CommonModule,
