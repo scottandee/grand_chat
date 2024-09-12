@@ -11,6 +11,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { User } from './users/entities/user.entity';
 import { Room } from './rooms/entities/room.entity';
 import { Message } from './messages/entities/message.entity';
+import { AuthModule } from './common/auth/auth.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { Message } from './messages/entities/message.entity';
       entities: [User, Room, Message],
       synchronize: true,
     }),
+    AuthModule,
     CommonModule,
     UsersModule,
     RoomsModule,
