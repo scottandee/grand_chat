@@ -1,10 +1,16 @@
-import { Base } from "src/common/entities/base.entity";
-import { Room } from "src/rooms/entities/room.entity";
-import { User } from "src/users/entities/user.entity";
-import { Column, CreateDateColumn, Entity, ManyToMany, ManyToOne } from "typeorm";
+import { Base } from 'src/common/entities/base.entity';
+import { Room } from 'src/rooms/entities/room.entity';
+import { User } from 'src/users/entities/user.entity';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  ManyToMany,
+  ManyToOne,
+} from 'typeorm';
 
 @Entity({ name: 'messages' })
-export class Message extends  Base<Message> {
+export class Message extends Base<Message> {
   @Column({ nullable: false })
   content: string;
 
@@ -13,7 +19,7 @@ export class Message extends  Base<Message> {
 
   @ManyToMany(() => User, (user) => user.messages)
   user: User;
-  
+
   @CreateDateColumn()
   createdAt: string;
 }

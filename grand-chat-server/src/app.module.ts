@@ -19,7 +19,7 @@ import { AuthModule } from './common/auth/auth.module';
       isGlobal: true,
       validationSchema: Joi.object({
         PORT: Joi.number().port().required(),
-      })
+      }),
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
@@ -35,7 +35,7 @@ import { AuthModule } from './common/auth/auth.module';
     CommonModule,
     UsersModule,
     RoomsModule,
-    MessagesModule
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],

@@ -1,4 +1,4 @@
-import { Controller, Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User } from './entities/user.entity';
@@ -9,7 +9,7 @@ import { CreateUserInterface } from './interfaces/create-user.interface';
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepository: Repository<User>
+    private readonly usersRepository: Repository<User>,
   ) {}
 
   async createUser(createUserInterface: CreateUserInterface) {
@@ -19,14 +19,14 @@ export class UsersService {
 
   async findByEmail(email: string) {
     const user = await this.usersRepository.findOne({
-      where: { email }
-    })
+      where: { email },
+    });
     return user;
   }
 
   async verifyUserPwd(requestPwd: string, userPwd: string) {
     const owner = await bcrypt.compare(requestPwd, userPwd);
-    if (!owner) return false
-    return true
+    if (!owner) return false;
+    return true;
   }
 }
