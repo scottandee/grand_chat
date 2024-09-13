@@ -1,5 +1,5 @@
-import { Base } from 'src/common/entities/base.entity';
-import { Message } from 'src/messages/entities/message.entity';
+import { Base } from '../../common/entities/base.entity';
+import { Message } from '../../messages/entities/message.entity';
 import { Column, CreateDateColumn, Entity, OneToMany } from 'typeorm';
 
 @Entity({ name: 'rooms' })

@@ -1,6 +1,6 @@
-import { Base } from 'src/common/entities/base.entity';
-import { Room } from 'src/rooms/entities/room.entity';
-import { User } from 'src/users/entities/user.entity';
+import { Base } from '../../common/entities/base.entity';
+import { Room } from '../../rooms/entities/room.entity';
+import { User } from '../../users/entities/user.entity';
 import {
   Column,
   CreateDateColumn,

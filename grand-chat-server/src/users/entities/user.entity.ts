@@ -1,6 +1,6 @@
-import { Base } from 'src/common/entities/base.entity';
-import { Role } from 'src/common/enums/role.enum';
-import { Message } from 'src/messages/entities/message.entity';
+import { Base } from '../../common/entities/base.entity';
+import { Role } from '../../common/enums/role.enum';
+import { Message } from '../../messages/entities/message.entity';
 import { BeforeInsert, Column, Entity, ManyToMany } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
@@ -26,6 +26,9 @@ export class User extends Base<User> {
 
   @BeforeInsert()
   async hashPassword() {
-    this.password = await bcrypt.hash(this.password, 10);
+    if (this.password && !this.password.startsWith('$2b$')) {
+      const salt = await bcrypt.genSalt();
+      this.password = await bcrypt.hash(this.password, salt);
+    }
   }
 }
